@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bridge;
+
+option go_package = "./protocol";
+
+enum ServiceType {
+    UNKNOWN = 0;
+    GAME = 1;
+    FIGHT = 2;
+}
+
+enum FightType {
+    UNKNOWN_FIGHT_TYPE = 0;
+    LOCAL = 1;
+    SMALL_CROSS = 2;
+}
+
+message RegService {
+    ServiceType Type = 1;
+    oneof ServiceData {
+        RegGameSrv RegGameSrv = 2;
+        RegFightSrv RegFightSrv = 3;
+    }
+}
+
+message RegServiceResp {
+    ServiceType Type = 1;
+    bool success = 2;
+}
+
+message RegFightSrv {
+    FightType FightType = 1;
+    uint32 PfId = 2;
+    uint32 SrvId = 3;
+    map<int32, bool> ProtoIds = 4;
+}
+
+message RegGameSrv {
+    uint32 PfId = 1;
+    uint32 SrvId = 2;
+}
