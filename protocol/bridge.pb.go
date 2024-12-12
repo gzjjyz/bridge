@@ -20,6 +20,85 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type MsgId int32
+
+const (
+	MsgId_CLOSE_USER            MsgId = 0
+	MsgId_OPEN_USER             MsgId = 1
+	MsgId_USER_RAW_PROTO        MsgId = 2
+	MsgId_GAME_USER_PROTO       MsgId = 3
+	MsgId_FIGHT_USER_PROTO      MsgId = 4
+	MsgId_BROADCAST_GAME_MSG    MsgId = 5
+	MsgId_UPDATE_LEVEL          MsgId = 6
+	MsgId_SET_PLAYER_FIGHT_TYPE MsgId = 7
+	MsgId_SetPlayerId           MsgId = 9
+	MsgId_ForwardToGame         MsgId = 8
+	MsgId_ForwardToFight        MsgId = 10
+	MsgId_FIGHT_CLOSED          MsgId = 100
+	MsgId_BroadcastFightMsg     MsgId = 101
+)
+
+// Enum value maps for MsgId.
+var (
+	MsgId_name = map[int32]string{
+		0:   "CLOSE_USER",
+		1:   "OPEN_USER",
+		2:   "USER_RAW_PROTO",
+		3:   "GAME_USER_PROTO",
+		4:   "FIGHT_USER_PROTO",
+		5:   "BROADCAST_GAME_MSG",
+		6:   "UPDATE_LEVEL",
+		7:   "SET_PLAYER_FIGHT_TYPE",
+		9:   "SetPlayerId",
+		8:   "ForwardToGame",
+		10:  "ForwardToFight",
+		100: "FIGHT_CLOSED",
+		101: "BroadcastFightMsg",
+	}
+	MsgId_value = map[string]int32{
+		"CLOSE_USER":            0,
+		"OPEN_USER":             1,
+		"USER_RAW_PROTO":        2,
+		"GAME_USER_PROTO":       3,
+		"FIGHT_USER_PROTO":      4,
+		"BROADCAST_GAME_MSG":    5,
+		"UPDATE_LEVEL":          6,
+		"SET_PLAYER_FIGHT_TYPE": 7,
+		"SetPlayerId":           9,
+		"ForwardToGame":         8,
+		"ForwardToFight":        10,
+		"FIGHT_CLOSED":          100,
+		"BroadcastFightMsg":     101,
+	}
+)
+
+func (x MsgId) Enum() *MsgId {
+	p := new(MsgId)
+	*p = x
+	return p
+}
+
+func (x MsgId) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MsgId) Descriptor() protoreflect.EnumDescriptor {
+	return file_bridge_proto_enumTypes[0].Descriptor()
+}
+
+func (MsgId) Type() protoreflect.EnumType {
+	return &file_bridge_proto_enumTypes[0]
+}
+
+func (x MsgId) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MsgId.Descriptor instead.
+func (MsgId) EnumDescriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{0}
+}
+
 type ServiceType int32
 
 const (
@@ -53,11 +132,11 @@ func (x ServiceType) String() string {
 }
 
 func (ServiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_bridge_proto_enumTypes[0].Descriptor()
+	return file_bridge_proto_enumTypes[1].Descriptor()
 }
 
 func (ServiceType) Type() protoreflect.EnumType {
-	return &file_bridge_proto_enumTypes[0]
+	return &file_bridge_proto_enumTypes[1]
 }
 
 func (x ServiceType) Number() protoreflect.EnumNumber {
@@ -66,7 +145,7 @@ func (x ServiceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ServiceType.Descriptor instead.
 func (ServiceType) EnumDescriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{0}
+	return file_bridge_proto_rawDescGZIP(), []int{1}
 }
 
 type FightType int32
@@ -102,11 +181,11 @@ func (x FightType) String() string {
 }
 
 func (FightType) Descriptor() protoreflect.EnumDescriptor {
-	return file_bridge_proto_enumTypes[1].Descriptor()
+	return file_bridge_proto_enumTypes[2].Descriptor()
 }
 
 func (FightType) Type() protoreflect.EnumType {
-	return &file_bridge_proto_enumTypes[1]
+	return &file_bridge_proto_enumTypes[2]
 }
 
 func (x FightType) Number() protoreflect.EnumNumber {
@@ -115,7 +194,56 @@ func (x FightType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FightType.Descriptor instead.
 func (FightType) EnumDescriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{1}
+	return file_bridge_proto_rawDescGZIP(), []int{2}
+}
+
+type BroadcastType int32
+
+const (
+	BroadcastType_UNKNOWN_BROADCAST_TYPE BroadcastType = 0
+	BroadcastType_WORLD                  BroadcastType = 1
+	BroadcastType_GUILD                  BroadcastType = 2
+)
+
+// Enum value maps for BroadcastType.
+var (
+	BroadcastType_name = map[int32]string{
+		0: "UNKNOWN_BROADCAST_TYPE",
+		1: "WORLD",
+		2: "GUILD",
+	}
+	BroadcastType_value = map[string]int32{
+		"UNKNOWN_BROADCAST_TYPE": 0,
+		"WORLD":                  1,
+		"GUILD":                  2,
+	}
+)
+
+func (x BroadcastType) Enum() *BroadcastType {
+	p := new(BroadcastType)
+	*p = x
+	return p
+}
+
+func (x BroadcastType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BroadcastType) Descriptor() protoreflect.EnumDescriptor {
+	return file_bridge_proto_enumTypes[3].Descriptor()
+}
+
+func (BroadcastType) Type() protoreflect.EnumType {
+	return &file_bridge_proto_enumTypes[3]
+}
+
+func (x BroadcastType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BroadcastType.Descriptor instead.
+func (BroadcastType) EnumDescriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{3}
 }
 
 type RegService struct {
@@ -388,6 +516,871 @@ func (x *RegGameSrv) GetSrvId() uint32 {
 	return 0
 }
 
+type SetPlayerID struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId   int64 `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	PlayerId int64 `protobuf:"varint,2,opt,name=PlayerId,proto3" json:"PlayerId,omitempty"`
+}
+
+func (x *SetPlayerID) Reset() {
+	*x = SetPlayerID{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetPlayerID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetPlayerID) ProtoMessage() {}
+
+func (x *SetPlayerID) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetPlayerID.ProtoReflect.Descriptor instead.
+func (*SetPlayerID) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SetPlayerID) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *SetPlayerID) GetPlayerId() int64 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+type OpenUser struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64  `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	Addr   string `protobuf:"bytes,2,opt,name=Addr,proto3" json:"Addr,omitempty"`
+}
+
+func (x *OpenUser) Reset() {
+	*x = OpenUser{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *OpenUser) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OpenUser) ProtoMessage() {}
+
+func (x *OpenUser) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OpenUser.ProtoReflect.Descriptor instead.
+func (*OpenUser) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *OpenUser) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *OpenUser) GetAddr() string {
+	if x != nil {
+		return x.Addr
+	}
+	return ""
+}
+
+type UserRawProto struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64  `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	Data   []byte `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data,omitempty"`
+}
+
+func (x *UserRawProto) Reset() {
+	*x = UserRawProto{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserRawProto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserRawProto) ProtoMessage() {}
+
+func (x *UserRawProto) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserRawProto.ProtoReflect.Descriptor instead.
+func (*UserRawProto) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UserRawProto) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UserRawProto) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type CloseUser struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64 `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+}
+
+func (x *CloseUser) Reset() {
+	*x = CloseUser{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CloseUser) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CloseUser) ProtoMessage() {}
+
+func (x *CloseUser) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CloseUser.ProtoReflect.Descriptor instead.
+func (*CloseUser) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CloseUser) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type LoginResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId     int64  `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	GmLevel    int32  `protobuf:"varint,2,opt,name=GmLevel,proto3" json:"GmLevel,omitempty"`
+	ToUserData []byte `protobuf:"bytes,3,opt,name=ToUserData,proto3" json:"ToUserData,omitempty"`
+}
+
+func (x *LoginResp) Reset() {
+	*x = LoginResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LoginResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginResp) ProtoMessage() {}
+
+func (x *LoginResp) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginResp.ProtoReflect.Descriptor instead.
+func (*LoginResp) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *LoginResp) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *LoginResp) GetGmLevel() int32 {
+	if x != nil {
+		return x.GmLevel
+	}
+	return 0
+}
+
+func (x *LoginResp) GetToUserData() []byte {
+	if x != nil {
+		return x.ToUserData
+	}
+	return nil
+}
+
+type UserProto struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId  int64  `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	ProtoId int32  `protobuf:"varint,2,opt,name=ProtoId,proto3" json:"ProtoId,omitempty"`
+	Data    []byte `protobuf:"bytes,3,opt,name=Data,proto3" json:"Data,omitempty"`
+}
+
+func (x *UserProto) Reset() {
+	*x = UserProto{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserProto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserProto) ProtoMessage() {}
+
+func (x *UserProto) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserProto.ProtoReflect.Descriptor instead.
+func (*UserProto) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UserProto) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UserProto) GetProtoId() int32 {
+	if x != nil {
+		return x.ProtoId
+	}
+	return 0
+}
+
+func (x *UserProto) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type ActorProto struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ActorId uint64 `protobuf:"varint,1,opt,name=ActorId,proto3" json:"ActorId,omitempty"`
+	Data    []byte `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data,omitempty"`
+}
+
+func (x *ActorProto) Reset() {
+	*x = ActorProto{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActorProto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActorProto) ProtoMessage() {}
+
+func (x *ActorProto) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActorProto.ProtoReflect.Descriptor instead.
+func (*ActorProto) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ActorProto) GetActorId() uint64 {
+	if x != nil {
+		return x.ActorId
+	}
+	return 0
+}
+
+func (x *ActorProto) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type Fight2UserProto struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ActorId uint64 `protobuf:"varint,1,opt,name=ActorId,proto3" json:"ActorId,omitempty"`
+	ProtoId uint32 `protobuf:"varint,2,opt,name=ProtoId,proto3" json:"ProtoId,omitempty"`
+	Data    []byte `protobuf:"bytes,3,opt,name=Data,proto3" json:"Data,omitempty"`
+}
+
+func (x *Fight2UserProto) Reset() {
+	*x = Fight2UserProto{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Fight2UserProto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Fight2UserProto) ProtoMessage() {}
+
+func (x *Fight2UserProto) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Fight2UserProto.ProtoReflect.Descriptor instead.
+func (*Fight2UserProto) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *Fight2UserProto) GetActorId() uint64 {
+	if x != nil {
+		return x.ActorId
+	}
+	return 0
+}
+
+func (x *Fight2UserProto) GetProtoId() uint32 {
+	if x != nil {
+		return x.ProtoId
+	}
+	return 0
+}
+
+func (x *Fight2UserProto) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type ForwardMsgToFight struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FightType FightType `protobuf:"varint,1,opt,name=FightType,proto3,enum=bridge.FightType" json:"FightType,omitempty"`
+	ProtoId   uint32    `protobuf:"varint,2,opt,name=protoId,proto3" json:"protoId,omitempty"`
+	Data      []byte    `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ForwardMsgToFight) Reset() {
+	*x = ForwardMsgToFight{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ForwardMsgToFight) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForwardMsgToFight) ProtoMessage() {}
+
+func (x *ForwardMsgToFight) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForwardMsgToFight.ProtoReflect.Descriptor instead.
+func (*ForwardMsgToFight) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ForwardMsgToFight) GetFightType() FightType {
+	if x != nil {
+		return x.FightType
+	}
+	return FightType_UNKNOWN_FIGHT_TYPE
+}
+
+func (x *ForwardMsgToFight) GetProtoId() uint32 {
+	if x != nil {
+		return x.ProtoId
+	}
+	return 0
+}
+
+func (x *ForwardMsgToFight) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type ForwardMsgToGame struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProtoId uint32 `protobuf:"varint,1,opt,name=protoId,proto3" json:"protoId,omitempty"`
+	Data    []byte `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ForwardMsgToGame) Reset() {
+	*x = ForwardMsgToGame{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ForwardMsgToGame) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForwardMsgToGame) ProtoMessage() {}
+
+func (x *ForwardMsgToGame) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForwardMsgToGame.ProtoReflect.Descriptor instead.
+func (*ForwardMsgToGame) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ForwardMsgToGame) GetProtoId() uint32 {
+	if x != nil {
+		return x.ProtoId
+	}
+	return 0
+}
+
+func (x *ForwardMsgToGame) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type BroadcastGameMsg struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BroadcastType int32  `protobuf:"varint,1,opt,name=broadcastType,proto3" json:"broadcastType,omitempty"`
+	GuildId       int64  `protobuf:"varint,2,opt,name=guildId,proto3" json:"guildId,omitempty"`
+	Level         uint32 `protobuf:"varint,3,opt,name=level,proto3" json:"level,omitempty"`
+	ProtoId       int32  `protobuf:"varint,4,opt,name=protoId,proto3" json:"protoId,omitempty"`
+	Data          []byte `protobuf:"bytes,5,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *BroadcastGameMsg) Reset() {
+	*x = BroadcastGameMsg{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BroadcastGameMsg) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BroadcastGameMsg) ProtoMessage() {}
+
+func (x *BroadcastGameMsg) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BroadcastGameMsg.ProtoReflect.Descriptor instead.
+func (*BroadcastGameMsg) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *BroadcastGameMsg) GetBroadcastType() int32 {
+	if x != nil {
+		return x.BroadcastType
+	}
+	return 0
+}
+
+func (x *BroadcastGameMsg) GetGuildId() int64 {
+	if x != nil {
+		return x.GuildId
+	}
+	return 0
+}
+
+func (x *BroadcastGameMsg) GetLevel() uint32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+func (x *BroadcastGameMsg) GetProtoId() int32 {
+	if x != nil {
+		return x.ProtoId
+	}
+	return 0
+}
+
+func (x *BroadcastGameMsg) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type UpdateLevel struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64  `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	Level  uint32 `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
+}
+
+func (x *UpdateLevel) Reset() {
+	*x = UpdateLevel{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateLevel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateLevel) ProtoMessage() {}
+
+func (x *UpdateLevel) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateLevel.ProtoReflect.Descriptor instead.
+func (*UpdateLevel) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateLevel) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UpdateLevel) GetLevel() uint32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+type UpdateGuildId struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId  int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	GuildId uint32 `protobuf:"varint,2,opt,name=guildId,proto3" json:"guildId,omitempty"`
+}
+
+func (x *UpdateGuildId) Reset() {
+	*x = UpdateGuildId{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateGuildId) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateGuildId) ProtoMessage() {}
+
+func (x *UpdateGuildId) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateGuildId.ProtoReflect.Descriptor instead.
+func (*UpdateGuildId) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateGuildId) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UpdateGuildId) GetGuildId() uint32 {
+	if x != nil {
+		return x.GuildId
+	}
+	return 0
+}
+
+type SetPlayerFightType struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId    int64     `protobuf:"varint,1,opt,name=UserId,proto3" json:"UserId,omitempty"`
+	FightType FightType `protobuf:"varint,2,opt,name=FightType,proto3,enum=bridge.FightType" json:"FightType,omitempty"`
+}
+
+func (x *SetPlayerFightType) Reset() {
+	*x = SetPlayerFightType{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetPlayerFightType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetPlayerFightType) ProtoMessage() {}
+
+func (x *SetPlayerFightType) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetPlayerFightType.ProtoReflect.Descriptor instead.
+func (*SetPlayerFightType) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *SetPlayerFightType) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *SetPlayerFightType) GetFightType() FightType {
+	if x != nil {
+		return x.FightType
+	}
+	return FightType_UNKNOWN_FIGHT_TYPE
+}
+
+type FightClosed struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FightType FightType `protobuf:"varint,1,opt,name=FightType,proto3,enum=bridge.FightType" json:"FightType,omitempty"`
+}
+
+func (x *FightClosed) Reset() {
+	*x = FightClosed{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FightClosed) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FightClosed) ProtoMessage() {}
+
+func (x *FightClosed) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FightClosed.ProtoReflect.Descriptor instead.
+func (*FightClosed) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *FightClosed) GetFightType() FightType {
+	if x != nil {
+		return x.FightType
+	}
+	return FightType_UNKNOWN_FIGHT_TYPE
+}
+
 var File_bridge_proto protoreflect.FileDescriptor
 
 var file_bridge_proto_rawDesc = []byte{
@@ -427,15 +1420,109 @@ var file_bridge_proto_rawDesc = []byte{
 	0x61, 0x6d, 0x65, 0x53, 0x72, 0x76, 0x12, 0x12, 0x0a, 0x04, 0x50, 0x66, 0x49, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x50, 0x66, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x53, 0x72,
 	0x76, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x53, 0x72, 0x76, 0x49, 0x64,
-	0x2a, 0x2f, 0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12,
-	0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04,
-	0x47, 0x41, 0x4d, 0x45, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x46, 0x49, 0x47, 0x48, 0x54, 0x10,
-	0x02, 0x2a, 0x3f, 0x0a, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x16,
-	0x0a, 0x12, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x5f, 0x46, 0x49, 0x47, 0x48, 0x54, 0x5f,
-	0x54, 0x59, 0x50, 0x45, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x4c, 0x4f, 0x43, 0x41, 0x4c, 0x10,
-	0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x4d, 0x41, 0x4c, 0x4c, 0x5f, 0x43, 0x52, 0x4f, 0x53, 0x53,
-	0x10, 0x02, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x41, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44, 0x12,
+	0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x50, 0x6c, 0x61, 0x79, 0x65,
+	0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x50, 0x6c, 0x61, 0x79, 0x65,
+	0x72, 0x49, 0x64, 0x22, 0x36, 0x0a, 0x08, 0x4f, 0x70, 0x65, 0x6e, 0x55, 0x73, 0x65, 0x72, 0x12,
+	0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x41, 0x64, 0x64, 0x72, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x41, 0x64, 0x64, 0x72, 0x22, 0x3a, 0x0a, 0x0c, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x61, 0x77, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x55,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65,
+	0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x04, 0x44, 0x61, 0x74, 0x61, 0x22, 0x23, 0x0a, 0x09, 0x43, 0x6c, 0x6f, 0x73, 0x65,
+	0x55, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x5d, 0x0a, 0x09,
+	0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x12, 0x16, 0x0a, 0x06, 0x55, 0x73, 0x65,
+	0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49,
+	0x64, 0x12, 0x18, 0x0a, 0x07, 0x47, 0x6d, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x07, 0x47, 0x6d, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x1e, 0x0a, 0x0a, 0x54,
+	0x6f, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x0a, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x22, 0x51, 0x0a, 0x09, 0x55,
+	0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x18, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x07, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x44, 0x61,
+	0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x44, 0x61, 0x74, 0x61, 0x22, 0x3a,
+	0x0a, 0x0a, 0x41, 0x63, 0x74, 0x6f, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x18, 0x0a, 0x07,
+	0x41, 0x63, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x41,
+	0x63, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x44, 0x61, 0x74, 0x61, 0x22, 0x59, 0x0a, 0x0f, 0x46, 0x69,
+	0x67, 0x68, 0x74, 0x32, 0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x18, 0x0a,
+	0x07, 0x41, 0x63, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07,
+	0x41, 0x63, 0x74, 0x6f, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x49,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x04, 0x44, 0x61, 0x74, 0x61, 0x22, 0x72, 0x0a, 0x11, 0x46, 0x6f, 0x72, 0x77, 0x61, 0x72, 0x64,
+	0x4d, 0x73, 0x67, 0x54, 0x6f, 0x46, 0x69, 0x67, 0x68, 0x74, 0x12, 0x2f, 0x0a, 0x09, 0x46, 0x69,
+	0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e,
+	0x62, 0x72, 0x69, 0x64, 0x67, 0x65, 0x2e, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65,
+	0x52, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x40, 0x0a, 0x10, 0x46, 0x6f, 0x72,
+	0x77, 0x61, 0x72, 0x64, 0x4d, 0x73, 0x67, 0x54, 0x6f, 0x47, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a,
+	0x07, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x96, 0x01, 0x0a, 0x10,
+	0x42, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x4d, 0x73, 0x67,
+	0x12, 0x24, 0x0a, 0x0d, 0x62, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74, 0x54, 0x79, 0x70,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x62, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61,
+	0x73, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x67, 0x75, 0x69, 0x6c, 0x64, 0x49,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x67, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x64,
+	0x12, 0x14, 0x0a, 0x05, 0x6c, 0x65, 0x76, 0x65, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x05, 0x6c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49,
+	0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64,
+	0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x22, 0x3b, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4c, 0x65,
+	0x76, 0x65, 0x6c, 0x12, 0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6c,
+	0x65, 0x76, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6c, 0x65, 0x76, 0x65,
+	0x6c, 0x22, 0x41, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x47, 0x75, 0x69, 0x6c, 0x64,
+	0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x67, 0x75,
+	0x69, 0x6c, 0x64, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x67, 0x75, 0x69,
+	0x6c, 0x64, 0x49, 0x64, 0x22, 0x5d, 0x0a, 0x12, 0x53, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x79, 0x65,
+	0x72, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x55, 0x73,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x12, 0x2f, 0x0a, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x62, 0x72, 0x69, 0x64, 0x67, 0x65, 0x2e, 0x46,
+	0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54,
+	0x79, 0x70, 0x65, 0x22, 0x3e, 0x0a, 0x0b, 0x46, 0x69, 0x67, 0x68, 0x74, 0x43, 0x6c, 0x6f, 0x73,
+	0x65, 0x64, 0x12, 0x2f, 0x0a, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x62, 0x72, 0x69, 0x64, 0x67, 0x65, 0x2e, 0x46,
+	0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54,
+	0x79, 0x70, 0x65, 0x2a, 0x8b, 0x02, 0x0a, 0x05, 0x4d, 0x73, 0x67, 0x49, 0x64, 0x12, 0x0e, 0x0a,
+	0x0a, 0x43, 0x4c, 0x4f, 0x53, 0x45, 0x5f, 0x55, 0x53, 0x45, 0x52, 0x10, 0x00, 0x12, 0x0d, 0x0a,
+	0x09, 0x4f, 0x50, 0x45, 0x4e, 0x5f, 0x55, 0x53, 0x45, 0x52, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e,
+	0x55, 0x53, 0x45, 0x52, 0x5f, 0x52, 0x41, 0x57, 0x5f, 0x50, 0x52, 0x4f, 0x54, 0x4f, 0x10, 0x02,
+	0x12, 0x13, 0x0a, 0x0f, 0x47, 0x41, 0x4d, 0x45, 0x5f, 0x55, 0x53, 0x45, 0x52, 0x5f, 0x50, 0x52,
+	0x4f, 0x54, 0x4f, 0x10, 0x03, 0x12, 0x14, 0x0a, 0x10, 0x46, 0x49, 0x47, 0x48, 0x54, 0x5f, 0x55,
+	0x53, 0x45, 0x52, 0x5f, 0x50, 0x52, 0x4f, 0x54, 0x4f, 0x10, 0x04, 0x12, 0x16, 0x0a, 0x12, 0x42,
+	0x52, 0x4f, 0x41, 0x44, 0x43, 0x41, 0x53, 0x54, 0x5f, 0x47, 0x41, 0x4d, 0x45, 0x5f, 0x4d, 0x53,
+	0x47, 0x10, 0x05, 0x12, 0x10, 0x0a, 0x0c, 0x55, 0x50, 0x44, 0x41, 0x54, 0x45, 0x5f, 0x4c, 0x45,
+	0x56, 0x45, 0x4c, 0x10, 0x06, 0x12, 0x19, 0x0a, 0x15, 0x53, 0x45, 0x54, 0x5f, 0x50, 0x4c, 0x41,
+	0x59, 0x45, 0x52, 0x5f, 0x46, 0x49, 0x47, 0x48, 0x54, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x10, 0x07,
+	0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x64, 0x10,
+	0x09, 0x12, 0x11, 0x0a, 0x0d, 0x46, 0x6f, 0x72, 0x77, 0x61, 0x72, 0x64, 0x54, 0x6f, 0x47, 0x61,
+	0x6d, 0x65, 0x10, 0x08, 0x12, 0x12, 0x0a, 0x0e, 0x46, 0x6f, 0x72, 0x77, 0x61, 0x72, 0x64, 0x54,
+	0x6f, 0x46, 0x69, 0x67, 0x68, 0x74, 0x10, 0x0a, 0x12, 0x10, 0x0a, 0x0c, 0x46, 0x49, 0x47, 0x48,
+	0x54, 0x5f, 0x43, 0x4c, 0x4f, 0x53, 0x45, 0x44, 0x10, 0x64, 0x12, 0x15, 0x0a, 0x11, 0x42, 0x72,
+	0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74, 0x46, 0x69, 0x67, 0x68, 0x74, 0x4d, 0x73, 0x67, 0x10,
+	0x65, 0x2a, 0x2f, 0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x08, 0x0a,
+	0x04, 0x47, 0x41, 0x4d, 0x45, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x46, 0x49, 0x47, 0x48, 0x54,
+	0x10, 0x02, 0x2a, 0x3f, 0x0a, 0x09, 0x46, 0x69, 0x67, 0x68, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x16, 0x0a, 0x12, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x5f, 0x46, 0x49, 0x47, 0x48, 0x54,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x4c, 0x4f, 0x43, 0x41, 0x4c,
+	0x10, 0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x4d, 0x41, 0x4c, 0x4c, 0x5f, 0x43, 0x52, 0x4f, 0x53,
+	0x53, 0x10, 0x02, 0x2a, 0x41, 0x0a, 0x0d, 0x42, 0x72, 0x6f, 0x61, 0x64, 0x63, 0x61, 0x73, 0x74,
+	0x54, 0x79, 0x70, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x5f,
+	0x42, 0x52, 0x4f, 0x41, 0x44, 0x43, 0x41, 0x53, 0x54, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x10, 0x00,
+	0x12, 0x09, 0x0a, 0x05, 0x57, 0x4f, 0x52, 0x4c, 0x44, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x47,
+	0x55, 0x49, 0x4c, 0x44, 0x10, 0x02, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -450,29 +1537,49 @@ func file_bridge_proto_rawDescGZIP() []byte {
 	return file_bridge_proto_rawDescData
 }
 
-var file_bridge_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_bridge_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_bridge_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_bridge_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_bridge_proto_goTypes = []any{
-	(ServiceType)(0),       // 0: bridge.ServiceType
-	(FightType)(0),         // 1: bridge.FightType
-	(*RegService)(nil),     // 2: bridge.RegService
-	(*RegServiceResp)(nil), // 3: bridge.RegServiceResp
-	(*RegFightSrv)(nil),    // 4: bridge.RegFightSrv
-	(*RegGameSrv)(nil),     // 5: bridge.RegGameSrv
-	nil,                    // 6: bridge.RegFightSrv.ProtoIdsEntry
+	(MsgId)(0),                 // 0: bridge.MsgId
+	(ServiceType)(0),           // 1: bridge.ServiceType
+	(FightType)(0),             // 2: bridge.FightType
+	(BroadcastType)(0),         // 3: bridge.BroadcastType
+	(*RegService)(nil),         // 4: bridge.RegService
+	(*RegServiceResp)(nil),     // 5: bridge.RegServiceResp
+	(*RegFightSrv)(nil),        // 6: bridge.RegFightSrv
+	(*RegGameSrv)(nil),         // 7: bridge.RegGameSrv
+	(*SetPlayerID)(nil),        // 8: bridge.SetPlayerID
+	(*OpenUser)(nil),           // 9: bridge.OpenUser
+	(*UserRawProto)(nil),       // 10: bridge.UserRawProto
+	(*CloseUser)(nil),          // 11: bridge.CloseUser
+	(*LoginResp)(nil),          // 12: bridge.LoginResp
+	(*UserProto)(nil),          // 13: bridge.UserProto
+	(*ActorProto)(nil),         // 14: bridge.ActorProto
+	(*Fight2UserProto)(nil),    // 15: bridge.Fight2UserProto
+	(*ForwardMsgToFight)(nil),  // 16: bridge.ForwardMsgToFight
+	(*ForwardMsgToGame)(nil),   // 17: bridge.ForwardMsgToGame
+	(*BroadcastGameMsg)(nil),   // 18: bridge.BroadcastGameMsg
+	(*UpdateLevel)(nil),        // 19: bridge.UpdateLevel
+	(*UpdateGuildId)(nil),      // 20: bridge.UpdateGuildId
+	(*SetPlayerFightType)(nil), // 21: bridge.SetPlayerFightType
+	(*FightClosed)(nil),        // 22: bridge.FightClosed
+	nil,                        // 23: bridge.RegFightSrv.ProtoIdsEntry
 }
 var file_bridge_proto_depIdxs = []int32{
-	0, // 0: bridge.RegService.Type:type_name -> bridge.ServiceType
-	5, // 1: bridge.RegService.RegGameSrv:type_name -> bridge.RegGameSrv
-	4, // 2: bridge.RegService.RegFightSrv:type_name -> bridge.RegFightSrv
-	0, // 3: bridge.RegServiceResp.Type:type_name -> bridge.ServiceType
-	1, // 4: bridge.RegFightSrv.FightType:type_name -> bridge.FightType
-	6, // 5: bridge.RegFightSrv.ProtoIds:type_name -> bridge.RegFightSrv.ProtoIdsEntry
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	1,  // 0: bridge.RegService.Type:type_name -> bridge.ServiceType
+	7,  // 1: bridge.RegService.RegGameSrv:type_name -> bridge.RegGameSrv
+	6,  // 2: bridge.RegService.RegFightSrv:type_name -> bridge.RegFightSrv
+	1,  // 3: bridge.RegServiceResp.Type:type_name -> bridge.ServiceType
+	2,  // 4: bridge.RegFightSrv.FightType:type_name -> bridge.FightType
+	23, // 5: bridge.RegFightSrv.ProtoIds:type_name -> bridge.RegFightSrv.ProtoIdsEntry
+	2,  // 6: bridge.ForwardMsgToFight.FightType:type_name -> bridge.FightType
+	2,  // 7: bridge.SetPlayerFightType.FightType:type_name -> bridge.FightType
+	2,  // 8: bridge.FightClosed.FightType:type_name -> bridge.FightType
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_bridge_proto_init() }
@@ -529,6 +1636,186 @@ func file_bridge_proto_init() {
 				return nil
 			}
 		}
+		file_bridge_proto_msgTypes[4].Exporter = func(v any, i int) any {
+			switch v := v.(*SetPlayerID); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[5].Exporter = func(v any, i int) any {
+			switch v := v.(*OpenUser); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[6].Exporter = func(v any, i int) any {
+			switch v := v.(*UserRawProto); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[7].Exporter = func(v any, i int) any {
+			switch v := v.(*CloseUser); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*LoginResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*UserProto); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[10].Exporter = func(v any, i int) any {
+			switch v := v.(*ActorProto); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*Fight2UserProto); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*ForwardMsgToFight); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*ForwardMsgToGame); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[14].Exporter = func(v any, i int) any {
+			switch v := v.(*BroadcastGameMsg); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[15].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateLevel); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[16].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateGuildId); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[17].Exporter = func(v any, i int) any {
+			switch v := v.(*SetPlayerFightType); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[18].Exporter = func(v any, i int) any {
+			switch v := v.(*FightClosed); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_bridge_proto_msgTypes[0].OneofWrappers = []any{
 		(*RegService_RegGameSrv)(nil),
@@ -539,8 +1826,8 @@ func file_bridge_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_bridge_proto_rawDesc,
-			NumEnums:      2,
-			NumMessages:   5,
+			NumEnums:      4,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

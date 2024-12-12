@@ -4,6 +4,24 @@ package bridge;
 
 option go_package = "./protocol";
 
+enum MsgId {
+    CLOSE_USER = 0;
+    OPEN_USER = 1;
+    USER_RAW_PROTO = 2;
+    GAME_USER_PROTO = 3;
+    FIGHT_USER_PROTO = 4;
+    BROADCAST_GAME_MSG = 5;
+    UPDATE_LEVEL = 6;
+    SET_PLAYER_FIGHT_TYPE = 7;
+    SetPlayerId = 9;
+    ForwardToGame = 8;
+    ForwardToFight = 10;
+
+
+    FIGHT_CLOSED = 100;
+    BroadcastFightMsg = 101;
+}
+
 enum ServiceType {
     UNKNOWN = 0;
     GAME = 1;
@@ -14,6 +32,12 @@ enum FightType {
     UNKNOWN_FIGHT_TYPE = 0;
     LOCAL = 1;
     SMALL_CROSS = 2;
+}
+
+enum BroadcastType {
+    UNKNOWN_BROADCAST_TYPE = 0;
+    WORLD = 1;
+    GUILD = 2;
 }
 
 message RegService {
@@ -40,3 +64,92 @@ message RegGameSrv {
     uint32 PfId = 1;
     uint32 SrvId = 2;
 }
+
+message SetPlayerID {
+    int64 UserId = 1;
+    int64 PlayerId = 2;
+}
+
+message OpenUser {
+    int64 UserId = 1;
+    string Addr = 2;
+}
+
+message UserRawProto {
+    int64 UserId = 1;
+    bytes Data = 2;
+}
+
+
+message CloseUser {
+    int64 UserId = 1;
+}
+
+
+message LoginResp {
+    int64 UserId = 1;
+    int32 GmLevel = 2;
+    bytes ToUserData = 3;
+}
+
+message UserProto {
+    int64 UserId = 1;
+    int32 ProtoId = 2;
+    bytes Data = 3;
+}
+
+message ActorProto {
+    uint64 ActorId = 1;
+    bytes Data = 2;
+}
+
+
+message Fight2UserProto {
+    uint64 ActorId = 1;
+    uint32 ProtoId = 2;
+    bytes Data = 3;
+}
+
+message ForwardMsgToFight {
+    FightType FightType = 1;
+    uint32 protoId = 2;
+    bytes data = 3;
+}
+
+message ForwardMsgToGame {
+    uint32 protoId = 1;
+    bytes data = 2;
+}
+
+message BroadcastGameMsg {
+    int32 broadcastType = 1;
+    int64 guildId = 2;
+    uint32 level = 3;
+    int32 protoId = 4;
+    bytes data = 5;
+}
+
+message UpdateLevel {
+    int64 UserId = 1;
+    uint32 level = 2;
+}
+
+message UpdateGuildId {
+    int64 userId = 1;
+    uint32 guildId = 2;
+}
+
+message SetPlayerFightType {
+    int64 UserId = 1;
+    FightType FightType = 2;
+}
+///////////////////////////
+
+
+
+
+message FightClosed {
+    FightType FightType = 1;
+}
+
+
